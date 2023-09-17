@@ -1,0 +1,2 @@
+<span>{{ dices.dicesValues.length > 1 ? 'Dados '+dices.colorName : 'Dado '+dices.colorName}}:</span><br>
+<span *ngFor="let diceValue of dices.dicesValues; last as isLast">{{diceValue}}{{isLast ? '.' : ', ' }}</span><br>
