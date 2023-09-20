@@ -1,24 +1,29 @@
 <div class="container">
-    <h1>Tirada de Dados WoW - El juego de mesa</h1>
+
+    <div class="tituloPrincipal">
+        <h1>Tirada de Dados WoW - El juego de mesa</h1>
+    </div>
+
     <div class="configuration-container" style="display: flex; gap: 15px;">
-        <div class="form-group" style>
+        <div class="form-group">
             <label for="colors">Colores de dados:</label><br>
-            <div *ngFor="let dice of dices">
-                <input class="form-check-input" type="checkbox" [(ngModel)]="dice.selected">{{dice.name}}
-                <input class="form-control" type="number" [(ngModel)]="dice.quantity" min="1" max="7">
+            <div class="contenedorNumeroDados" *ngFor="let dice of dices">
+                <input class="form-range" type="range" min="0" max="7" [(ngModel)]="dice.selected"
+                    (change)="numeroDelRango(dice)">{{dice.name}}
+                <input class="form-control" type="text" [(ngModel)]="dice.quantity" min="1" max="7"
+                    (change)="cantidadDelRango(dice)">
                 <br>
             </div>
         </div>
     </div>
-    <hr>    
+    <hr>
     <button class="btn btn-primary" (click)="rollDices()">Lanzar Dados</button>
     <div class="results">
         <div class="dice-results-container" *ngIf="showResults">
-        <p class="result-text">Resultados:</p>
-        <div *ngFor="let dicesByColor of dicesResults">
-            <app-dice [dices]="dicesByColor"></app-dice>
+            <p class="result-text">Resultados:</p>
+            <div *ngFor="let dicesByColor of dicesResults">
+                <app-dice [dices]="dicesByColor"></app-dice>
+            </div>
         </div>
-      </div>
     </div>
 </div>
-  

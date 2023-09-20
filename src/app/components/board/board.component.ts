@@ -64,4 +64,12 @@ export class BoardComponent {
 
     this.showResults = true;
   }
+
+  numeroDelRango(dice: any) {
+    dice.quantity = dice.selected;
+  }
+
+  cantidadDelRango(dice: any) {
+    dice.selected = dice.quantity;
+  }
 }

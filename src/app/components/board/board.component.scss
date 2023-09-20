@@ -1,0 +1,21 @@
+.contenedorNumeroDados {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-between
+
+}
+
+.form-range {
+    width: 300px;
+    
+}
+
+.form-control {
+    margin-left: 15px;
+    border-radius: 100px;
+    border: 2px solid black;
+    width: 50px;
+    text-align: center;
+
+}
