@@ -17,7 +17,8 @@
         </div>
     </div>
     <hr>
-    <button class="btn btn-primary" (click)="rollDices()">Lanzar Dados</button>
+    <button class="d-inline-flex focus-ring py-1 px-2 text-decoration-none border rounded-2"
+        style="--bs-focus-ring-color: rgba(var(--bs-success-rgb), .25)" (click)="rollDices()">Lanzar Dados</button>
     <div class="results">
         <div class="dice-results-container" *ngIf="showResults">
             <p class="result-text">Resultados:</p>

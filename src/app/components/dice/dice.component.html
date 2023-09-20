@@ -1,2 +1,26 @@
-<span>{{ dices.dicesValues.length > 1 ? 'Dados '+dices.colorName : 'Dado '+dices.colorName}}:</span><br>
-<span *ngFor="let diceValue of dices.dicesValues; last as isLast">{{diceValue}}{{isLast ? '.' : ', ' }}</span><br>
+<div class="contenedor">
+
+    <div class="span">
+
+        <span>{{ dices.dicesValues.length > 1 ? 'Dados '+dices.colorName : 'Dado
+            '+dices.colorName}}:</span><br>
+
+    </div>
+
+    <div class="dados">
+
+        <div class="form-group" *ngFor="let diceValue of dices.dicesValues">
+
+            <select class="form-control">
+
+                <option>{{diceValue}}</option>
+
+                <option *ngFor="let opciones of arrayOpciones(1,8)">{{opciones}}</option>,
+
+            </select>
+
+        </div>
+
+    </div>
+
+</div>
