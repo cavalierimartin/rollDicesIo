@@ -9,7 +9,7 @@
             <label for="colors">Colores de dados:</label><br>
             <div class="contenedorNumeroDados" *ngFor="let dice of dices">
                 <input class="form-range" type="range" min="0" max="7" [(ngModel)]="dice.selected"
-                    (change)="numeroDelRango(dice)">{{dice.name}}
+                    (change)="numeroDelRango(dice)">{{dice.colorName}}
                 <input class="form-control" type="text" [(ngModel)]="dice.quantity" min="1" max="7"
                     (change)="cantidadDelRango(dice)">
                 <br>
@@ -17,12 +17,11 @@
         </div>
     </div>
     <hr>
-    <button class="d-inline-flex focus-ring py-1 px-2 text-decoration-none border rounded-2"
-        style="--bs-focus-ring-color: rgba(var(--bs-success-rgb), .25)" (click)="rollDices()">Lanzar Dados</button>
+    <button (click)="rollDices()">Lanzar Dados</button>
     <div class="results">
         <div class="dice-results-container" *ngIf="showResults">
             <p class="result-text">Resultados:</p>
-            <div *ngFor="let dicesByColor of dicesResults">
+            <div *ngFor="let dicesByColor of dices">
                 <app-dice [dices]="dicesByColor"></app-dice>
             </div>
         </div>

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Color } from '../../models/color.interface';
+import { DicesService } from 'src/app/services/dices.service';
+
+//
 
 @Component({
   selector: 'app-board',
@@ -7,6 +10,7 @@ import { Color } from '../../models/color.interface';
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent {
+
   colors: { [key: string]: Color } = {
     red: {
       name: 'Rojo',
@@ -22,48 +26,47 @@ export class BoardComponent {
     },
   };
 
-  dices: any = [
+  dices: { colorName: string, id: string, selected: boolean, quantity: number, dicesValues: number[] }[] = [
     {
-      name: this.colors['red'].name,
+      colorName: this.colors['red'].name,
       id: this.colors['red'].id,
       selected: true,
       quantity: 3,
+      dicesValues: []
     },
     {
-      name: this.colors['blue'].name,
+      colorName: this.colors['blue'].name,
       id: this.colors['blue'].id,
       selected: true,
       quantity: 4,
+      dicesValues: []
     },
     {
-      name: this.colors['green'].name,
+      colorName: this.colors['green'].name,
       id: this.colors['green'].id,
       selected: true,
       quantity: 5,
+      dicesValues: []
     },
   ];
 
-  showResults: boolean = false;
-  dicesResults: { colorName: any; dicesValues: number[] }[] = [];
+  public showResults = false;
 
+  constructor(private dicesServices: DicesService) {
+
+  }
+
+  // obtener un listado de x numeros random por cada color
   rollDices() {
-    this.showResults = false;
-    this.dicesResults = [];
-    this.dices.map((dice: any) => {
-      if (dice.selected) {
-        let results: number[] = [];
-        for (let i = 0; i < dice.quantity; i++) {
-          results.push(Math.floor(Math.random() * 8) + 1);
-        }
-        this.dicesResults.push({
-          colorName: dice.name,
-          dicesValues: results,
-        });
+    this.dices.forEach((dice) => {
+      if (dice.quantity > 0) {
+        // tiro los dados y asigno los valores al color que se tiró esta vez
+        dice.dicesValues = this.dicesServices.getRandomValues(dice.quantity);
       }
     });
-
     this.showResults = true;
   }
+
 
   numeroDelRango(dice: any) {
     dice.quantity = dice.selected;

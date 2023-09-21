@@ -2,25 +2,25 @@
 
     <div class="span">
 
-        <span>{{ dices.dicesValues.length > 1 ? 'Dados '+dices.colorName : 'Dado
-            '+dices.colorName}}:</span><br>
+        <span>'Dados '{{ dices.colorName}}:</span><br>
 
     </div>
 
     <div class="dados">
 
-        <div class="form-group" *ngFor="let diceValue of dices.dicesValues">
+        <div class="form-group" *ngFor="let asdfg of dices.dicesValues, let i = index">
 
-            <select class="form-control">
+            <select class="form-control" [value]="asdfg" name="name{{i}}">
 
-                <option>{{diceValue}}</option>
+                <option>{{asdfg}}</option>
 
-                <option *ngFor="let opciones of arrayOpciones(1,8)">{{opciones}}</option>,
+                <option *ngFor="let opciones of arrayOpciones(1,8)">{{opciones}}</option>
 
             </select>
-
+            <br />
+            <button type="button" (click)="rollDice(i)">Lanzar</button>
+            <hr>
         </div>
-
     </div>
 
 </div>
