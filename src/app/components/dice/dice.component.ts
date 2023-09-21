@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ColorsNameEnum } from 'src/app/models/colors-names.enum';
+import { DiceStatusEnum } from 'src/app/models/dice-status.enum';
+import { DiceGroup } from 'src/app/models/dice.interface';
 import { DicesService } from 'src/app/services/dices.service';
 
 
@@ -12,7 +14,7 @@ import { DicesService } from 'src/app/services/dices.service';
 
 export class DiceComponent {
 
-  @Input() dices!: { colorName: string, id: string, selected: boolean, quantity: number, dicesValues: number[] }
+  @Input() diceGroup!: DiceGroup
 
   constructor(private dicesServices: DicesService) {
 
@@ -23,18 +25,10 @@ export class DiceComponent {
    */
   rollDice(i: number) {
     //obtener el nuevo valor de dado y modificar el valor del dado
-    this.dices.dicesValues[i] = this.dicesServices.getRandomNumber();
-
-
-
-
-
-
-
-
-
-
-
+    if (this.diceGroup.dices && this.diceGroup.dices[i]) {
+      this.diceGroup.dices[i].value = this.dicesServices.getRandomNumber();
+      this.diceGroup.dices[i].status = DiceStatusEnum.RERROLLED;
+    }
   }
 
 

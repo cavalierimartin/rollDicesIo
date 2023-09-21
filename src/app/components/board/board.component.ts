@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { Color } from '../../models/color.interface';
 import { DicesService } from 'src/app/services/dices.service';
+import { DiceGroup } from 'src/app/models/dice.interface';
+import { ColorsNameEnum } from 'src/app/models/colors-names.enum';
+import { ColorsIdsEnum } from 'src/app/models/colors-ids.enum';
+import { DiceStatusEnum } from 'src/app/models/dice-status.enum';
 
 //
 
@@ -26,27 +30,21 @@ export class BoardComponent {
     },
   };
 
-  dices: { colorName: string, id: string, selected: boolean, quantity: number, dicesValues: number[] }[] = [
+  dicesGroups: DiceGroup[] = [
     {
-      colorName: this.colors['red'].name,
-      id: this.colors['red'].id,
-      selected: true,
-      quantity: 3,
-      dicesValues: []
+      colorName: ColorsNameEnum.RED,
+      id: ColorsIdsEnum.RED,
+      quantity: 3
     },
     {
-      colorName: this.colors['blue'].name,
-      id: this.colors['blue'].id,
-      selected: true,
-      quantity: 4,
-      dicesValues: []
+      colorName: ColorsNameEnum.BLUE,
+      id: ColorsIdsEnum.BLUE,
+      quantity: 4
     },
     {
-      colorName: this.colors['green'].name,
-      id: this.colors['green'].id,
-      selected: true,
-      quantity: 5,
-      dicesValues: []
+      colorName: ColorsNameEnum.GREEN,
+      id: ColorsIdsEnum.GREEN,
+      quantity: 2
     },
   ];
 
@@ -58,21 +56,18 @@ export class BoardComponent {
 
   // obtener un listado de x numeros random por cada color
   rollDices() {
-    this.dices.forEach((dice) => {
+    this.dicesGroups.forEach((dice) => {
+      dice.dices = [];
       if (dice.quantity > 0) {
         // tiro los dados y asigno los valores al color que se tiró esta vez
-        dice.dicesValues = this.dicesServices.getRandomValues(dice.quantity);
+        for (let i = 0; i < dice.quantity; i++) {
+          dice.dices.push({ status: DiceStatusEnum.ROLLED, value: this.dicesServices.getRandomNumber() });
+        }
       }
     });
     this.showResults = true;
+
+    //obtengo el nombre de ngClass y lo pongo en verdadero para que cuando se aprete el boton 
   }
 
-
-  numeroDelRango(dice: any) {
-    dice.quantity = dice.selected;
-  }
-
-  cantidadDelRango(dice: any) {
-    dice.selected = dice.quantity;
-  }
 }

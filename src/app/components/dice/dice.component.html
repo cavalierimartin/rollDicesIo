@@ -2,17 +2,17 @@
 
     <div class="span">
 
-        <span>'Dados '{{ dices.colorName}}:</span><br>
+        <span>'Dados '{{ diceGroup.colorName}}:</span><br>
 
     </div>
 
     <div class="dados">
 
-        <div class="form-group" *ngFor="let asdfg of dices.dicesValues, let i = index">
+        <div class="form-group" *ngFor="let dice of diceGroup.dices; let i = index">
 
-            <select class="form-control" [value]="asdfg" name="name{{i}}">
+            <select class="form-control" [value]="dice.value" name="name{{i}}" [ngClass]="dice.status">
 
-                <option>{{asdfg}}</option>
+                <option>{{dice.value}}</option>
 
                 <option *ngFor="let opciones of arrayOpciones(1,8)">{{opciones}}</option>
 
