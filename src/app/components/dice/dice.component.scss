@@ -1,11 +1,27 @@
 .contenedor {
-    color: black;
-    }
-    
-    .span {
-    color: black;
-    }
-    
-    .dados {
-        display: flex;
-    }
+  color: black;
+}
+
+.span {
+  color: black;
+}
+
+.dados {
+  display: flex;
+}
+
+.rolled {
+  background-color: red;
+}
+
+.rerrolled {
+  background-color: green;
+}
+
+.modified {
+  background-color: blue;
+}
+
+.rerrolled-and-modified {
+  background-color: yellow;
+}
