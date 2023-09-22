@@ -11,7 +11,7 @@
             <select class="form-control" [(ngModel)]="dice.value" name="name{{i}}" [ngClass]="dice.status"
                 (ngModelChange)="clickOpcionDice(i)">
 
-                <option *ngFor="let opciones of ao">{{opciones}}</option>
+                <option *ngFor="let opciones of opcionesSelect">{{opciones}}</option>
 
             </select>
 
