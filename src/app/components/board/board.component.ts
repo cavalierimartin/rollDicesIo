@@ -57,11 +57,9 @@ export class BoardComponent {
     //si el estado es estado1, va a cambiar a estado2
     if (this.stateButton === 'estado1') {
       this.stateButton = 'estado2'
-      console.log(this.stateButton);
     } else {
       //sino vuelve a estado1
       this.stateButton = 'estado1';
-      console.log(this.stateButton);
     }
   }
 

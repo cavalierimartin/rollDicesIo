@@ -50,11 +50,9 @@ export class DiceComponent {
       if (this.diceGroup.dices[i].status === DiceStatusEnum.ROLLED || this.diceGroup.dices[i].status === DiceStatusEnum.MODIFIED) {
         //Le asigno el valor del estado de MODIFIED
         this.diceGroup.dices[i].status = DiceStatusEnum.MODIFIED
-        console.log(this.diceGroup.dices[i].status);
         //Si el estado no es igual a los estados anteriores, va a tomar el estado de RERROLLED_AND_MODIFIED
       } else {
         this.diceGroup.dices[i].status = DiceStatusEnum.RERROLLED_AND_MODIFIED
-        console.log(this.diceGroup.dices[i].status);
       }
     }
   }
