@@ -1,9 +1,7 @@
-import { Component, Input, numberAttribute } from '@angular/core';
-import { ColorsNameEnum } from 'src/app/models/colors-names.enum';
+import { Component, Input } from '@angular/core';
 import { DiceStatusEnum } from 'src/app/models/dice-status.enum';
 import { DiceGroup } from 'src/app/models/dice.interface';
 import { DicesService } from 'src/app/services/dices.service';
-
 
 @Component({
   selector: 'app-dice',
@@ -11,12 +9,12 @@ import { DicesService } from 'src/app/services/dices.service';
   styleUrls: ['./dice.component.scss'],
 })
 
-
 export class DiceComponent {
 
   @Input() diceGroup!: DiceGroup
 
   opcionesSelect: number[];
+  showResults: boolean = false;
 
   constructor(private dicesServices: DicesService) {
     this.opcionesSelect = this.arrayOpciones(1, 8);
@@ -41,7 +39,7 @@ export class DiceComponent {
       }
       console.log(this.diceGroup.dices[i].status);
     }
-
+    this.showResults = true;
   }
 
   //Modifico el valor del select a MODIFIED

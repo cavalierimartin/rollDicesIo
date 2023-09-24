@@ -6,13 +6,12 @@ import { ColorsNameEnum } from 'src/app/models/colors-names.enum';
 import { ColorsIdsEnum } from 'src/app/models/colors-ids.enum';
 import { DiceStatusEnum } from 'src/app/models/dice-status.enum';
 
-//
-
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
 })
+
 export class BoardComponent {
 
   colors: { [key: string]: Color } = {
@@ -49,13 +48,25 @@ export class BoardComponent {
   ];
 
   public showResults = false;
+  stateButton = 'estado1';
 
-  constructor(private dicesServices: DicesService) {
+  constructor(private dicesServices: DicesService) { }
 
+  //Creo metodo donde voy vareando los estados del boton general de dados
+  private changeStateButton() {
+    //si el estado es estado1, va a cambiar a estado2
+    if (this.stateButton === 'estado1') {
+      this.stateButton = 'estado2'
+      console.log(this.stateButton);
+    } else {
+      //sino vuelve a estado1
+      this.stateButton = 'estado1';
+      console.log(this.stateButton);
+    }
   }
 
   // obtener un listado de x numeros random por cada color
-  rollDices() {
+  private rollDices() {
     this.dicesGroups.forEach((dice) => {
       dice.dices = [];
       if (dice.quantity > 0) {
@@ -63,11 +74,13 @@ export class BoardComponent {
         for (let i = 0; i < dice.quantity; i++) {
           dice.dices.push({ status: DiceStatusEnum.ROLLED, value: this.dicesServices.getRandomNumber() });
         }
-      }
-    });
-    this.showResults = true;
-
-    //obtengo el nombre de ngClass y lo pongo en verdadero para que cuando se aprete el boton 
+      };
+    }); this.showResults = true;
   }
 
+  //Metodo donde incluye metodo rollDices y changeButton
+  buttonTasks() {
+    this.rollDices();
+    this.changeStateButton();
+  }
 }

@@ -1,9 +1,7 @@
 <div class="container">
-
     <div class="tituloPrincipal">
         <h1>Tirada de Dados WoW - El juego de mesa</h1>
     </div>
-
     <div class="configuration-container" style="display: flex; gap: 15px;">
         <div class="form-group">
             <label for="colors">Colores de dados:</label><br>
@@ -15,12 +13,15 @@
         </div>
     </div>
     <hr>
-    <button (click)="rollDices()">Lanzar Dados</button>
+    <div class="buttonDices">
+        <button (click)="buttonTasks()">Lanzar Dados</button>
+    </div>
     <div class="results">
         <div class="dice-results-container" *ngIf="showResults">
             <p class="result-text">Resultados:</p>
+
             <div *ngFor="let dicesByColor of dicesGroups">
-                <app-dice [diceGroup]="dicesByColor"></app-dice>
+                <app-dice [diceGroup]="dicesByColor" *ngIf="dicesByColor.quantity > 0"></app-dice>
             </div>
         </div>
     </div>
